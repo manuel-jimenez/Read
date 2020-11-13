@@ -192,9 +192,6 @@ Bot/readme
       python -m pip install -r app/requirements.txt
    ```  
   
-  - Se abrirá una ventana en la cual se debe ingresar tu usuario y contraseaña de git
-  
-  ![usuario de git](https://scontent.fmex16-1.fna.fbcdn.net/v/t1.15752-9/124574830_437639197618591_5419471592337621046_n.png?_nc_cat=108&ccb=2&_nc_sid=ae9488&_nc_eui2=AeF5BEUYY5adl-YMqzdQ42NQXgNUQTfrRVpeA1RBN-tFWmen2q7VqMO9GDvt1kU4gB2FFJxICIcrYsg942IABMt-&_nc_ohc=6Ofj67u41vYAX_tJr1I&_nc_ht=scontent.fmex16-1.fna&oh=675604a4402893f963582b9ede0eeb96&oe=5FD3DD79)
    - Posteriormente empesará la descarga e instalación
   
   
