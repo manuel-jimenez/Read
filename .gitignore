@@ -1,0 +1,8 @@
+botenv
+ubotenv
+venv
+__pycache__
+.vscode
+*.tar
+*.db*
+logs

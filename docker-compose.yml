@@ -1,0 +1,70 @@
+version: '2.0'
+
+services: 
+  botic-app:
+    image: botic:0.0.1.alpha
+    links: 
+      - db
+      - es
+      - redis
+    ports:
+      - 5000:5000
+    entrypoint: ./boot.sh
+    environment:
+      - SECRET_KEY=b'KEUo\x7fu\x9b1t\x07\xfc\x95)l\xa5\xc1\x19\x1c\xaf\x9d@\xf8_\xbaR\xf2K\xc7'
+      - DATABASE_URL=postgresql://central:b0t1c2x2x@db/central
+      - MAIL_SERVER=smtp.googlemail.com
+      - MAIL_PORT=587
+      - MAIL_USE_TLS=true
+      - MAIL_USERNAME=botic.no.reply@gmail.com
+      - MAIL_PASSWORD=b0t1c2x2x
+      - API_URL_HOST_AND_PORT=https://swatdev-condor.ddns.net:11443
+      - REDIS_URL:redis://redis/0
+      - ELASTICSEARCH_URL=http://es
+  
+  botic-api:
+    image: botic:0.0.1.alpha
+    entrypoint: ./boot-api.sh
+    environment:
+      - DATABASE_URL=postgresql://central:b0t1c2x2x@db/central
+    links: 
+      - db
+    ports:
+      - 5001:5000
+
+  botic-scheduler:
+    image: botic:0.0.1.alpha
+    entrypoint: ./boot-scheduler.sh
+    environment:
+      - REDIS_URL:redis://redis:6379/0
+      - DATABASE_URL=postgresql://central:b0t1c2x2x@db/central
+    links: 
+      - db
+      - redis
+    ports:
+      - 5003:5000
+  db:
+    image: postgres
+    ports:
+      - 32000:3306
+    environment:
+      - POSTGRES_USER=central
+      - POSTGRES_DB=central
+      - POSTGRES_PASSWORD=b0t1c2x2x
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.2
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node   
+ 
+  redis:
+    image: redis:latest
+    ports: 
+      - 6379:6379
+
+volumes:
+  db:
+    driver: local
